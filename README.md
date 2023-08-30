@@ -12,6 +12,8 @@
 
 [Prettier官网](https://www.prettier.cn/)
 
+[vant3官网](https://vant-contrib.gitee.io/vant/v3/#/zh-CN)
+
 ## 使用Vite创建vue3项目
 
 ```
@@ -369,4 +371,4 @@ module.exports = {
    }
    ```
 
-   
+## 安装vant-ui和使用Vite按需加载组件
