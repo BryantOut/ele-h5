@@ -312,6 +312,17 @@ type(scope?):subject
 // subject就是描述commit的详细说明
 ```
 
+### 常见的type类型
+
+- feat：新功能
+- fix：Bug 修复
+- docs：文档更新
+- style：代码样式更改，例如空格、格式、缺少分号等
+- refactor：重构代码
+- [perf](https://so.csdn.net/so/search?q=perf&spm=1001.2101.3001.7020)：性能优化
+- test：添加缺失或修正测试代码
+- chore：构建相关的代码或工具库，如文档生成等
+
 ### 安装commitlint
 
 [相关文档](https://juejin.cn/post/7193519302853525560?searchId=20230829165842AC44965ADE8AA0B17254)
