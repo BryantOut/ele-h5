@@ -14,6 +14,8 @@
 
 [vant3官网](https://vant-contrib.gitee.io/vant/v3/#/zh-CN)
 
+[vue-router官网](https://router.vuejs.org/zh/)
+
 ## 使用Vite创建vue3项目
 
 ```
@@ -326,7 +328,7 @@ echo "module.exports = {extends: ['@commitlint/config-conventional']}" > commitl
 
 2. 添加配置文件，新建`commitlint.config.js`，然后添加下面的代码
 
-```
+```js
 module.exports = {
     extends: ['@commitlint/config-conventional'],
     // 校验规则
@@ -362,7 +364,7 @@ module.exports = {
 
    > 因为我们需要运行`npm run commitlint`，所以需要在`package.json`文件中添加如下代码：
 
-   ```
+   ```ts
    # 在scrips中添加下面的代码
    {
    "scripts": {
@@ -372,3 +374,69 @@ module.exports = {
    ```
 
 ## 安装vant-ui和使用Vite按需加载组件
+
+[vant3官网](https://vant-contrib.gitee.io/vant/v3/#/zh-CN/quickstart)
+
+## vue-router实现页面路由
+
+### 什么是**vue-router**?
+
+- 嵌套路由映射
+- 动态路由选择
+- 模块化、基于组件的路由配置
+- 路由参数、查询、通配符
+- **HTML5 history**模式或**hash**模式
+
+### 什么是路由？
+
+- **单页面应用SPA**
+  - <u>不刷新而切换页面某部分</u>
+- 单页面应用路由
+  - 应用页面的状态
+  - pathname(**history api**)或**hash**
+
+### 如何配置路由？
+
+- 内容组件渲染的地方
+
+  > <router-view>
+
+- 路由与组件的对应关系
+
+  > router实例config
+
+- 触发路由跳转的地方（如果需要的话）
+
+  > <router-link>或代码动态设置
+
+### 示例
+
+```vue
+<script setup lang="ts">
+// import { Tabbar, TabbarItem } from 'vant';
+import { RouterView, useRoute, useRouter } from 'vue-router';
+import { ref, watch } from 'vue';
+
+const route = useRoute(); // 获取当前路由状态
+const router = useRouter(); // 获取路由实例
+
+// 记录当前选择的tab
+const active = ref(route.name as string);
+
+watch(active, (nv) => {
+  router.push({
+    name: nv,
+  });
+});
+</script>
+
+<template>
+  <RouterView />
+  <van-tabbar v-model="active">
+    <van-tabbar-item name="home" icon="home-o">首页</van-tabbar-item>
+    <van-tabbar-item name="order" icon="bars">订单</van-tabbar-item>
+    <van-tabbar-item name="me" icon="contact">我的</van-tabbar-item>
+  </van-tabbar>
+</template>
+```
+
