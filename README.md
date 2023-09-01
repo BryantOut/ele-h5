@@ -319,7 +319,7 @@ type(scope?):subject
 - docs：文档更新
 - style：代码样式更改，例如空格、格式、缺少分号等
 - refactor：重构代码
-- [perf](https://so.csdn.net/so/search?q=perf&spm=1001.2101.3001.7020)：性能优化
+- perf：性能优化
 - test：添加缺失或修正测试代码
 - chore：构建相关的代码或工具库，如文档生成等
 
@@ -451,3 +451,84 @@ watch(active, (nv) => {
 </template>
 ```
 
+## 使用json-server搭建Mock Server
+
+### 为什么学？
+
+经常需要使用mock数据来模拟后端提供接口数据
+
+### 什么是Mock Server?
+
+![Snipaste1](./public/Snipaste4.png)
+
+### 什么是json-server?
+
+- **Mock Server**搭建工具
+  - 轻易搭建拥有完整**REST API**的轻量级后端服务
+- 使用**json-server**方式
+  - 通过**json-server**命令启动一个服务
+  - 通过**module**将**json-server**引入到自己的node服务
+
+![Snipaste1](./public/Snipaste2.png)
+
+### 架构
+
+- middleware：中间件，用来处理所有请求，比如鉴权、静态资源等功能
+  - json-server提供的中间件：静态资源、请求体解析
+  - 自定义中间件：鉴权
+- router：带路由url的中间件，处理特定路由url的请求
+  - json-server的路由：一些直接使用json数据的api
+  - 自定义路由：有自定义逻辑的api
+
+### 文件结构
+
+- data：存放所有数据json文件
+- public：存放静态资源，比如图片
+- src：项目的处理逻辑
+  - app.js：项目入口文件，包括应用创建、中间件使用
+  - router.js：处理自定义路由
+  - db.js：处理json-server的路由
+  - controller：存放controller
+  - service：存放service
+
+## 介绍Vite和使用Vite配置请求代理
+
+### 什么是跨域？
+
+- 同源
+  - 协议protocol
+  - 端口port
+  - 域名host
+
+### 为什么要限制跨域？
+
+- 出于安全性，浏览器会限制脚本内发起跨源HTTP请求
+  - XMLHttpRequest和Fetch API
+- Web应用
+  - 只能从加载应用程序的同一个请求HTTP资源
+  - 除非包含CORS响应头
+
+### 如何解决跨域？
+
+- 常用的跨域方案
+  - jsonp：<script>不受同源策略限制
+  - 跨源域资源共享CORS：允许Web应用服务器进行跨源访问控制
+  - 使用不同的源变成同源
+
+### 什么是反向代理？
+
+- 代理：请求转发
+
+![Snipaste1](./public/Snipaste3.png)
+
+- 代理服务器类型
+  - 正向代理：客户端告诉代理服务器资源的地址
+  - 反向代理：客户端只告诉要什么资源
+
+### 反向代理如何解决跨域问题？
+
+![Snipaste1](./public/Snipaste5.png)
+
+### vite代理
+
+![Snipaste1](./public/Snipaste6.png)
