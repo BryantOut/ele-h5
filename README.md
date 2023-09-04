@@ -390,6 +390,23 @@ module.exports = {
 
 [vant3官网](https://vant-contrib.gitee.io/vant/v3/#/zh-CN/quickstart)
 
+### 什么是Tree Shaking?
+
+- 移除无用的资源，包括JS代码、CSS文件
+
+![Snipaste1](./public/Snipaste11.png)
+
+### unplugin-vue-components
+
+> 在基于 `vite`、`webpack` 或 `vue-cli` 的项目中使用 Vant 时，可以使用 [unplugin-vue-components](https://github.com/antfu/unplugin-vue-components) 插件，它可以自动引入组件，并按需引入组件的样式。
+>
+> 相比于常规用法，这种方式可以按需引入组件的 CSS 样式，从而减少一部分代码体积，但使用起来会变得繁琐一些。如果业务对 CSS 的体积要求不是特别极致，我们推荐使用更简便的常规用法。
+
+- 安装插件
+- 在vite.config.js中配置插件
+- 直接在模版使用Vant组件
+- 引入函数组件的样式
+
 ## vue-router实现页面路由
 
 ### 什么是**vue-router**?
