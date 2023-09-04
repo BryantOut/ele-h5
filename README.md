@@ -646,3 +646,34 @@ const deviceWidth = document.documentElement.clientWidth; // 屏幕
 document.documentElement.style.fontSize = (deviceWidth * rootValue) / rootWidth + 'px'; // body
 ```
 
+## normalize.css处理不同浏览器的默认样式
+
+### 安装
+
+```
+npm install normalize.css
+```
+
+### App.vue中配置
+
+```vue
+<style scoped>
+@import 'normalize.css';
+
+#app {
+  /** 字体抗锯齿，让字体看起来更清晰 */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #2c3e50;
+}
+</style>
+```
+
+## sass：css预处理器
+
+### 安装
+
+```
+npm install sass -D
+```
+
