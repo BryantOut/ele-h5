@@ -16,6 +16,8 @@
 
 [vue-router官网](https://router.vuejs.org/zh/)
 
+[postcss官网](https://postcss.org/)
+
 ## 使用Vite创建vue3项目
 
 ```
@@ -578,3 +580,43 @@ watch(active, (nv) => {
 - 动态获取用户设备的屏幕宽度
 
 ![Snipaste1](./public/Snipaste8.png)
+
+- px转rem
+
+![Snipaste1](./public/Snipaste9.png)
+
+### 什么事post-css?
+
+- css转换工具
+
+![Snipaste1](./public/Snipaste10.png)
+
+- autoprefixer：自动管理css属性的浏览器前缀
+- postcss-pxtorem：px转换为rem
+
+### 安装postcss和相关插件
+
+```node
+npm i postcss autoprefixer postcss-pxtorem -D
+```
+
+### 新建postcss.config.js文件
+
+```js
+module.exports = {
+  plugins: {
+    autoprefixer: {
+      overrideBrowserslist: ['Android >= 4.0', 'iOS >= 7'],
+    },
+    'postcss-pxtorem': {
+      // 根节点的 fontSize 值
+      rootValue: 16,
+      propList: ['*'],
+      selectorBlackList: [':root'],
+    },
+  },
+}
+```
+
+
+

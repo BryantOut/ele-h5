@@ -1,5 +1,5 @@
-import axios from './base';
+// import axios from './base';
 
-export const fetchTest = () => {
-  return axios.get('test');
-};
+// export const fetchTest = () => {
+//   return axios.get('test');
+// };
