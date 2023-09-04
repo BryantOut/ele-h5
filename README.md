@@ -581,6 +581,8 @@ watch(active, (nv) => {
 
 ![Snipaste1](./public/Snipaste8.png)
 
+> fontSize(body)是动态改变的
+
 - px转rem
 
 ![Snipaste1](./public/Snipaste9.png)
@@ -618,5 +620,12 @@ module.exports = {
 }
 ```
 
+### main.ts配置
 
+```js
+const rootValue = 16; // 设计稿中的body
+const rootWidth = 390; // 设计稿中俄屏幕
+const deviceWidth = document.documentElement.clientWidth; // 屏幕
+document.documentElement.style.fontSize = (deviceWidth * rootValue) / rootWidth + 'px'; // body
+```
 

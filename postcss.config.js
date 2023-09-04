@@ -10,4 +10,4 @@ module.exports = {
       selectorBlackList: [':root'],
     },
   },
-};
+}
