@@ -1,9 +1,7 @@
 <script setup lang="ts">
+import type { ISearchRecomment } from '@/types';
 interface IProps {
-  recomments: {
-    value: number;
-    label: string;
-  }[];
+  recomments: ISearchRecomment[];
 }
 
 defineProps<IProps>();
