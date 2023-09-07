@@ -250,6 +250,23 @@ module.exports = {
 }
 ```
 
+### 配置.husky下pre-commit文件
+
+```
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+npm run pre-commit
+```
+
+### package文件新增配置
+
+```
+"scripts": {
+	"pre-commit": "lint-staged"
+}
+```
+
 ## 使用husky管理Git hooks
 
 - husky
