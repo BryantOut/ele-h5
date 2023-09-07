@@ -11,9 +11,22 @@ interface IEmits {
 
 const emits = defineEmits<IEmits>();
 
-const HISTORY_TAGS = ['比萨', '栗子', '切果NOW', '炒饭', '出前一丁', '玉米', '牛腩', '土豆焗饭', '烧烤', '水果'];
+const HISTORY_TAGS = [
+  '比萨',
+  '栗子',
+  '切果NOW',
+  '炒饭',
+  '出前一丁',
+  '玉米',
+  '牛腩',
+  '土豆焗饭',
+  '烧烤',
+  '水果',
+];
 const [isHistoryTagShown, toggleHistoryTag] = useToggle(false);
-const historyTags = computed(() => (isHistoryTagShown.value ? HISTORY_TAGS : HISTORY_TAGS.slice(0, 5)));
+const historyTags = computed(() =>
+  isHistoryTagShown.value ? HISTORY_TAGS : HISTORY_TAGS.slice(0, 5),
+);
 
 const searchValue = ref('');
 
