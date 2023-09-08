@@ -250,23 +250,6 @@ module.exports = {
 }
 ```
 
-### 配置.husky下pre-commit文件
-
-```
-#!/usr/bin/env sh
-. "$(dirname -- "$0")/_/husky.sh"
-
-npm run pre-commit
-```
-
-### package文件新增配置
-
-```
-"scripts": {
-	"pre-commit": "lint-staged"
-}
-```
-
 ## 使用husky管理Git hooks
 
 - husky
@@ -704,5 +687,61 @@ npm install sass -D
 ## 自定义hook
 
 - hooks介绍
+
+> hooks和utils的区别可以理解为用没用到ref、watch、computed.....
+
 - 如何实现一个hooks
 - 事件传递实现跨组件通信
+
+## 性能优化：useDebounce避免多次请求
+
+- 短时间内多次发送请求，造成返回结果的不正确
+- 发送无用的请求，占用资源
+
+### 抖动问题
+
+![Snipaste1](./public/Snipaste12.png)
+
+在一段时间内触发多次，只执行最后一次
+
+### 解决抖动问题
+
+- 将事件延时执行
+- 如果在这段时间内事件再被触发，则取消执行之前的事件 
+
+### hooks
+
+```ts
+import type { Ref, UnwrapRef } from 'vue';
+import { watch, ref, onUnmounted } from 'vue';
+
+export function useDebounce<T>(value: Ref<T>, delay: number) {
+  const debounceValue = ref(value.value);
+  let timer: number | null = null;
+
+  const unwatch = watch(value, (nv) => {
+    if (timer) {
+      clearTimeout(timer);
+    }
+    timer = setTimeout(() => {
+      debounceValue.value = nv as UnwrapRef<T>;
+    }, delay);
+  });
+
+  onUnmounted(() => {
+    unwatch();
+  });
+
+  return debounceValue;
+}
+```
+
+### 使用hooks
+
+```ts
+const debounceValue = useDebounce(searchValue, 1000);
+watch(debounceValue, (nv) => {
+  ......
+});
+```
+
