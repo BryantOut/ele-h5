@@ -829,3 +829,10 @@ import type { IHomeInfo } from '@/types';
 const { data, pending } = useAsync(fetchHomePageData, {} as IHomeInfo);
 ```
 
+## 基础组件-LoadingView组件实现加载骨架
+
+- 实现加载loading和骨架屏
+
+- 需求分析
+
+![Snipaste1](./public/Snipaste13.png)
