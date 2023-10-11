@@ -772,4 +772,60 @@ watch(debounceValue, (nv) => {
 ### 需求分析
 
 - 新建一个fetchHomePageData的api
+
+```js
+import type { IHomeInfo } from '@/types';
+import axios from './base';
+
+export const fetchHomePageData = () => {
+  return axios.get<IHomeInfo, IHomeInfo>('home_page');
+};
+
+```
+
 - 实现**useAsync**，将api包裹一层，处理Promise的状态
+
+```js
+import type { UnwrapRef } from 'vue';
+import { ref } from 'vue';
+
+export function useAsync<T>(asyncFn: () => Promise<T>, initValue: T, immediate = true) {
+  const pending = ref(false);
+  const data = ref(initValue);
+  const error = ref(null);
+  const execute = function () {
+    pending.value = true;
+    error.value = null;
+    return asyncFn()
+      .then((res) => {
+        data.value = res as UnwrapRef<T>;
+        pending.value = false;
+      })
+      .catch((err) => {
+        error.value = err;
+        pending.value = false;
+      });
+  };
+
+  if (immediate) {
+    execute();
+  }
+
+  return {
+    pending,
+    data,
+    error,
+    execute,
+  };
+}
+```
+
+- HomeView调用
+
+```js
+import { useAsync } from '@/use/useAsync';
+import type { IHomeInfo } from '@/types';
+
+const { data, pending } = useAsync(fetchHomePageData, {} as IHomeInfo);
+```
+
