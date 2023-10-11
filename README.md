@@ -702,7 +702,7 @@ npm install sass -D
 
 ![Snipaste1](./public/Snipaste12.png)
 
-在一段时间内触发多次，只执行最后一次
+**在一段时间内触发多次，只执行最后一次**
 
 ### 解决抖动问题
 
@@ -736,6 +736,24 @@ export function useDebounce<T>(value: Ref<T>, delay: number) {
 }
 ```
 
+#### UnwrapRef
+
+> 在Vue 3中，`UnwrapRef`是一个类型，用于将一个Ref对象解包为其原始值。它是一个内置的类型工具，可以用来获取Ref对象的值类型。
+>
+> 例如，如果我们有一个Ref对象`count`，它的值类型是`number`，我们可以使用`UnwrapRef`来获取其原始值类型，如下所示：
+
+```js
+import { UnwrapRef, ref } from 'vue';
+
+const count = ref(0); // count是一个Ref<number>对象
+
+type CountValue = UnwrapRef<typeof count>; // CountValue类型为number
+
+const value: CountValue = 10; // 可以将原始值类型的值赋给CountValue类型的变量
+```
+
+通过使用`UnwrapRef`，我们可以获得Ref对象的原始值类型，以便在需要使用原始值类型的地方进行类型推断和验证。
+
 ### 使用hooks
 
 ```ts
@@ -745,3 +763,13 @@ watch(debounceValue, (nv) => {
 });
 ```
 
+## 自定义hooks-useAsync实现请求处理
+
+- **Promise then** 和 **catch** 的处理
+- TS 声明复杂的类型结构
+- 使用 jsonserver 中间件延时返回数据
+
+### 需求分析
+
+- 新建一个fetchHomePageData的api
+- 实现**useAsync**，将api包裹一层，处理Promise的状态

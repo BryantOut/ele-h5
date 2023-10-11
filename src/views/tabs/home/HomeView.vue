@@ -1,7 +1,10 @@
 <script setup lang="ts">
 import TheTop from './components/TheTop.vue';
 import { useToggle } from '@/use/useToggle';
-import SearchView from '@/views/search/SearchView.vue';
+import SearchView from '@/views/search/searchView.vue';
+import { fetchHomePageData } from '@/api/home';
+import { useAsync } from '@/use/useAsync';
+import type { IHomeInfo } from '@/types';
 
 const recomments = [
   {
@@ -15,6 +18,8 @@ const recomments = [
 ];
 
 const [isSearchViewShow, toggleSearchView] = useToggle(false);
+
+const { data, pending } = useAsync(fetchHomePageData, {} as IHomeInfo);
 </script>
 
 <template>
