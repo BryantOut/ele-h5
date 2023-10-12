@@ -29,7 +29,12 @@ const { data, pending } = useAsync(fetchHomePageData, {} as IHomeInfo);
       <SearchView v-if="isSearchViewShow" @cancel="toggleSearchView"></SearchView>
     </Transition>
     <TheTop :recomments="recomments" @searchClick="toggleSearchView" />
-    <OpLoadingView :loading="pending" type="skeleton">{{ data }}</OpLoadingView>
+    <OpLoadingView :loading="pending" type="skeleton">
+      <template #template>
+        <div>自定义loading</div>
+      </template>
+      {{ data }}
+    </OpLoadingView>
   </div>
 </template>
 
