@@ -7,6 +7,7 @@ import { useAsync } from '@/use/useAsync';
 import type { IHomeInfo } from '@/types';
 import OpLoadingView from '@/components/OpLoadingView.vue';
 import TheTransformer from './components/TheTransformer.vue';
+import ScrollBar from './components/ScrollBar.vue';
 
 const recomments = [
   {
@@ -33,6 +34,7 @@ const { data, pending } = useAsync(fetchHomePageData, {} as IHomeInfo);
     <OpLoadingView :loading="pending" type="skeleton">
       <!-- {{ data }} -->
       <TheTransformer :data="data.transformer"></TheTransformer>
+      <ScrollBar :data="data.scrollBarInfoList" />
     </OpLoadingView>
   </div>
 </template>
@@ -45,5 +47,10 @@ const { data, pending } = useAsync(fetchHomePageData, {} as IHomeInfo);
 .fade-enter-from,
 .fade-leave-to {
   opacity: 0;
+}
+
+.home-page {
+  background: var(--op-gray-bg-color);
+  // padding-bottom: 70px;
 }
 </style>
