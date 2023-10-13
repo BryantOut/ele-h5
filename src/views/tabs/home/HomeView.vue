@@ -6,6 +6,7 @@ import { fetchHomePageData } from '@/api/home';
 import { useAsync } from '@/use/useAsync';
 import type { IHomeInfo } from '@/types';
 import OpLoadingView from '@/components/OpLoadingView.vue';
+import TheTransformer from './components/TheTransformer.vue';
 
 const recomments = [
   {
@@ -30,10 +31,8 @@ const { data, pending } = useAsync(fetchHomePageData, {} as IHomeInfo);
     </Transition>
     <TheTop :recomments="recomments" @searchClick="toggleSearchView" />
     <OpLoadingView :loading="pending" type="skeleton">
-      <template #template>
-        <div>自定义loading</div>
-      </template>
-      {{ data }}
+      <!-- {{ data }} -->
+      <TheTransformer :data="data.transformer"></TheTransformer>
     </OpLoadingView>
   </div>
 </template>

@@ -878,3 +878,13 @@ defineProps<IProps>();
 </style>
 ```
 
+## Grid网格布局
+
+- 将页面划分为几个主要区域，以及定义区域的大小、位置、层级等
+- 按行或列来对齐元素
+- 子元素可以自己定位，像CSS定位的元素一样，真正的有重叠和层次
+- grid-template-column：定义网格的列尺寸大小
+  - `repeat(3,1fr)`：表示重复3次1fr，每列按1：1：1比例分配宽度
+- grid-gap：表示每个网格的间隔为10px
+- grid-auto-rows：设置隐性行尺寸大小
+  - minmax(100px,auto)：表示隐形行的最小宽度为100px，最大为auto
